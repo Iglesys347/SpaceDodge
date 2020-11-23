@@ -1,3 +1,7 @@
+"""
+Le main permettant de lancer une partie.
+"""
+
 import pygame
 
 from game import Game
@@ -23,30 +27,31 @@ while continuer:
     fenetre.blit(fond, (0, 0))
 
     if game.is_playing:
-        #declenchement de la partie
+        # declenchement de la partie
         game.maj(fenetre)
-        score+=1
+        score += 1
     else:
         score = 0
         main_screen_font = pygame.font.SysFont('impact', 40)
         main_screen_rendu = main_screen_font.render("Appuyez sur la touche espace pour débuter",
                                                     True,
-                                                    (255,255,255))
+                                                    (255, 255, 255))
         fenetre.blit(main_screen_rendu, (50, 180))
 
         rules_font = pygame.font.SysFont('impact', 25)
         rules_rendu = rules_font.render("Utilisez les flèches haut et bas pour déplacer le vaisseau",
                                         True,
-                                        (255,255,255))
+                                        (255, 255, 255))
         fenetre.blit(rules_rendu, (120, 230))
-        if  game.pressed.get(pygame.K_SPACE):
+        if game.pressed.get(pygame.K_SPACE):
             game.maj_game_state()
             print("Debut du jeu")
 
     score_font = pygame.font.SysFont('impact', 25)
-    score_rendu = score_font.render("Score : "+str(score), True, (255,255,255), (0,0,0))
+    score_rendu = score_font.render(
+        "Score : "+str(score), True, (255, 255, 255), (0, 0, 0))
 
-    fenetre.blit(score_rendu, (580,40))
+    fenetre.blit(score_rendu, (580, 40))
 
     # MAJ
     pygame.display.flip()
@@ -60,4 +65,3 @@ while continuer:
             game.pressed[event.key] = True
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
-

@@ -1,5 +1,5 @@
 """
-Le module asteroid permet de représenter un astéroïde.
+Le module asteroid permet de représenter un astéroïde sous forme de sprite.
 """
 
 import random
